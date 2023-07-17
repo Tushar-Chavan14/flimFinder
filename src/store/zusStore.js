@@ -3,7 +3,7 @@ import axios from "axios";
 import { produce } from "immer";
 import { persist } from "zustand/middleware";
 
-const apiUri = `http://www.omdbapi.com/?apikey=${import.meta.env.VITE_API_KEY}`;
+const apiUri = `https://www.omdbapi.com/?apikey=${import.meta.env.VITE_API_KEY}`;
 
 const watchListStore = (set, get) => ({
   watchList: [],
@@ -13,7 +13,7 @@ const watchListStore = (set, get) => ({
     const isWatchListed = watchList.some(
       (movie) => movie.imdbID === data.imdbID
     );
-    
+
     if (isWatchListed) return;
 
     set(
