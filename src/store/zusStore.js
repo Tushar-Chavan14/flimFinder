@@ -42,8 +42,7 @@ const store = (set) => ({
     const { data } = await axios.get(apiUri + `&t=${title}`);
 
     if (data.Error) {
-      set(() => ({ error: data.Error }));
-      set(() => ({ data: null }));
+      set(() => ({ error: data.Error, data: null }));
       return;
     }
 
