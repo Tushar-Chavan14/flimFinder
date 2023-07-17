@@ -3,7 +3,9 @@ import axios from "axios";
 import { produce } from "immer";
 import { persist } from "zustand/middleware";
 
-const apiUri = `https://www.omdbapi.com/?apikey=${import.meta.env.VITE_API_KEY}`;
+const apiUri = `https://www.omdbapi.com/?apikey=${
+  import.meta.env.VITE_API_KEY
+}`;
 
 const watchListStore = (set, get) => ({
   watchList: [],
@@ -40,7 +42,8 @@ const store = (set) => ({
     const { data } = await axios.get(apiUri + `&t=${title}`);
 
     if (data.Error) {
-      set((state) => ({ error: data.Error }));
+      set(() => ({ error: data.Error }));
+      set(() => ({ data: null }));
       return;
     }
 
