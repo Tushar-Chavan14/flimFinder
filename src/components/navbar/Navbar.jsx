@@ -6,7 +6,7 @@ import { useWatchListStore } from "../../store/zusStore";
 export default function Navbar() {
   const location = useLocation();
 
-  const deleteAll = useWatchListStore(state=>state.deleteAll)
+  const deleteAll = useWatchListStore((state) => state.deleteAll);
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -64,12 +64,22 @@ export default function Navbar() {
             <div className="space-y-1 px-2 pb-3 pt-2">
               {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
 
-              <Disclosure.Button
-                as="a"
-                href="#"
-                className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-              >
-                Watchlist
+              {location.pathname === "/watchlist" && (
+                <Disclosure.Button
+                  onClick={deleteAll}
+                  className="rounded-sm px-3 py-2 text-sm bg-red-800 font-medium text-gray-30 hover:text-white"
+                >
+                  Clear all
+                </Disclosure.Button>
+              )}
+
+              <Disclosure.Button className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">
+                <Link
+                  to="/watchlist"
+                  className="rounded-md px-3 py-2 text-sm bg-slate-50/10 font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                >
+                  Watchlist
+                </Link>
               </Disclosure.Button>
             </div>
             <div className="border-t border-gray-700 pb-3 pt-4"></div>
